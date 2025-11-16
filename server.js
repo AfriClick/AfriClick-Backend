@@ -41,7 +41,7 @@ app.post("/contact", contactLimiter, async (req, res) => {
     // Email to website owner
     await resend.emails.send({
       from:"onboarding@resend.dev",
-      to: process.env.GMAIL_USER,
+      to: "owner@galiavkal.resend.dev",
       subject: `New Contact Form Message from ${name}`,
       react: Welcomeemail({
         name,

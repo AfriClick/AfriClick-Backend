@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const FROM_EMAIL = "contact@galiavkal.resend.app";
+ 
 
 // Rate limiter
 const contactLimiter = rateLimit({
@@ -40,8 +40,8 @@ app.post("/contact", contactLimiter, async (req, res) => {
   try {
     // Email to website owner
     await resend.emails.send({
-      from:`Website Contact <${FROM_EMAIL}>`,
-      to: process.env.GMAIL_USER,
+      from:"onboarding@resend.dev",
+      to: "landingpagept123@gmail.com",
       subject: `New Contact Form Message from ${name}`,
       react: Welcomeemail({
         name,
@@ -55,7 +55,7 @@ app.post("/contact", contactLimiter, async (req, res) => {
     // Auto Reply
 
     await resend.emails.send({
-      from:  `Website Contact <${FROM_EMAIL}>`,
+      from:  "onboarding@resend.dev",
       to: email,
       subject: "We've received your message!",
       react: AutoReply({ name }),  

@@ -4,10 +4,9 @@ import dotenv from "dotenv";
 import rateLimit from "express-rate-limit";
 import { Resend } from "resend";
 import { render } from "@react-email/render";
-import Welcomeemail from "./emails/Welcomeemail.jsx";
-import AutoReply from "./emails/AutoReply.jsx";
-
-
+import React from "react";
+import Welcomeemail from "./emails/Welcomeemail.js";
+import AutoReply from "./emails/AutoReply.js";
 
 dotenv.config();
 
@@ -40,33 +39,33 @@ app.post("/contact", contactLimiter, async (req, res) => {
   try {
     // Email to website owner
     const html = render(
-      <Welcomeemail
-        name={name}
-        email={email}
-        phone={phone}
-        businessWebsite={business}
-        message={message}
-      />
+      React.createElement(Welcomeemail, {
+        name,
+        email,
+        phone,
+        businessWebsite: business,
+        message,
+      })
     );
 
     await resend.emails.send({
-        from: "Website Contact <noreply@yourdomain.com>",
-        to: process.env.GMAIL_USER, // your inbox
-        subject: `New Contact Form Message from ${name}`,
-        html: Html,
-      });
-  
-      // Send auto-reply to user
-      const autoReplyHtml = render(
-        <AutoReply name={name} />
-      );
-  
-      await resend.emails.send({
-        from: "Website Contact <noreply@yourdomain.com>",
-        to: email, // sender
-        subject: "Thanks for contacting us!",
-        html: autoReplyHtml,
-      });
+      from: "Website Contact <noreply@yourdomain.com>",
+      to: process.env.GMAIL_USER, // your inbox
+      subject: `New Contact Form Message from ${name}`,
+      html: html,
+    });
+
+    // Send auto-reply to user
+    const autoReplyHtml = render(
+      React.createElement(AutoReply, { name })
+    );
+
+    await resend.emails.send({
+      from: "Website Contact <noreply@yourdomain.com>",
+      to: email, // sender
+      subject: "Thanks for contacting us!",
+      html: autoReplyHtml,
+    });
 
     return res.status(200).json({ success: true, message: "Message sent!" });
   } catch (error) {

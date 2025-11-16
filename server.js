@@ -4,8 +4,9 @@ import dotenv from "dotenv";
 import rateLimit from "express-rate-limit";
 import { Resend } from "resend";
 import { render } from "@react-email/render";
-import Welcomeemail from "../react-email-starter/emails/Welcomeemail.jsx";
-import AutoReply from "../react-email-starter/emails/AutoReply.jsx";
+import Welcomeemail from "./emails/Welcomeemail.jsx";
+import AutoReply from "./emails/AutoReply.jsx";
+
 
 
 dotenv.config();
@@ -50,7 +51,7 @@ app.post("/contact", contactLimiter, async (req, res) => {
 
     await resend.emails.send({
         from: "Website Contact <noreply@yourdomain.com>",
-        to: process.env.YOUR_EMAIL, // your inbox
+        to: process.env.GMAIL_USER, // your inbox
         subject: `New Contact Form Message from ${name}`,
         html: Html,
       });

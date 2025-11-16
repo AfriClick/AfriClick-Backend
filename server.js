@@ -15,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+const FROM_EMAIL = "contact@galiavkal.resend.app";
 
 // Rate limiter
 const contactLimiter = rateLimit({
@@ -49,7 +50,7 @@ app.post("/contact", contactLimiter, async (req, res) => {
     );
 
     await resend.emails.send({
-      from: "Website Contact <noreply@yourdomain.com>",
+      from: `Website Contact <${FROM_EMAIL}>`,
       to: process.env.GMAIL_USER, // your inbox
       subject: `New Contact Form Message from ${name}`,
       html: html,
@@ -61,7 +62,7 @@ app.post("/contact", contactLimiter, async (req, res) => {
     );
 
     await resend.emails.send({
-      from: "Website Contact <noreply@yourdomain.com>",
+      from: `Website Contact <${FROM_EMAIL}>`,
       to: email, // sender
       subject: "Thanks for contacting us!",
       html: autoReplyHtml,

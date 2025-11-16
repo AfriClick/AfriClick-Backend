@@ -39,33 +39,26 @@ app.post("/contact", contactLimiter, async (req, res) => {
 
   try {
     // Email to website owner
-    const html = render(
-      React.createElement(Welcomeemail, {
+    await resend.emails.send({
+      from:`Website Contact <${FROM_EMAIL}>`,
+      to: process.env.GMAIL_USER,
+      subject: `New Contact Form Message from ${name}`,
+      react: Welcomeemail({
         name,
         email,
         phone,
         businessWebsite: business,
         message,
-      })
-    );
-
-    await resend.emails.send({
-      from: `Website Contact <${FROM_EMAIL}>`,
-      to: process.env.GMAIL_USER, // your inbox
-      subject: `New Contact Form Message from ${name}`,
-      html: html,
+      }),
     });
 
-    // Send auto-reply to user
-    const autoReplyHtml = render(
-      React.createElement(AutoReply, { name })
-    );
+    // Auto Reply
 
     await resend.emails.send({
-      from: `Website Contact <${FROM_EMAIL}>`,
-      to: email, // sender
-      subject: "Thanks for contacting us!",
-      html: autoReplyHtml,
+      from:  `Website Contact <${FROM_EMAIL}>`,
+      to: email,
+      subject: "We've received your message!",
+      react: AutoReply({ name }),  
     });
 
     return res.status(200).json({ success: true, message: "Message sent!" });

@@ -75,4 +75,4 @@ const AutoReply = ({ name = "Friend" }) => {
   );
 };
 
-export default AutoReply;
+export default AutoReply;       

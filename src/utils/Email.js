@@ -22,7 +22,7 @@ router.post("/contact", async (req, res) => {
 
     await resend.emails.send({
       from: "Website Contact <noreply@yourdomain.com>",
-      to: "youremail@gmail.com", // your inbox
+      to: "youremail@gmail.com",  
       subject: "New Contact Form Message",
       html,
     });

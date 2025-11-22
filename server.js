@@ -3,8 +3,6 @@ import cors from "cors";
 import dotenv from "dotenv";
 import rateLimit from "express-rate-limit";
 import { Resend } from "resend";
-import { render } from "@react-email/render";
-import React from "react";
 import Welcomeemail from "./emails/Welcomeemail.js";
 import AutoReply from "./emails/AutoReply.js";
 
@@ -68,6 +66,6 @@ app.post("/contact", contactLimiter, async (req, res) => {
   }
 });
 
-// Start server
+ 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

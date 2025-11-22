@@ -24,14 +24,14 @@ const AutoReply = ({ name = "Friend" }) => {
           Container,
           { className: "max-w-lg mx-auto my-10 bg-white rounded-lg shadow-md overflow-hidden" },
           
-          // Header
+   
           React.createElement(
             Section,
             { className: "bg-sky-600 py-4 text-center" },
             React.createElement(Text, { className: "text-white text-xl font-semibold tracking-wide" }, "Thanks for Reaching Out!")
           ),
 
-          // Greeting
+ 
           React.createElement(
             Section,
             { className: "px-6 py-6" },
@@ -43,7 +43,7 @@ const AutoReply = ({ name = "Friend" }) => {
             )
           ),
 
-          // Response Note
+ 
           React.createElement(
             Section,
             { className: "px-6 pb-6" },
@@ -55,10 +55,10 @@ const AutoReply = ({ name = "Friend" }) => {
             )
           ),
 
-          // Divider
+  
           React.createElement(Section, { className: "border-t border-gray-200 my-6 mx-6" }),
 
-          // Footer
+     
           React.createElement(
             Section,
             { className: "px-6 pb-6 text-center" },

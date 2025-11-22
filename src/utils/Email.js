@@ -15,7 +15,7 @@ router.post("/contact", async (req, res) => {
         name={name}
         email={email}
         phone={phone}
-        businessWebsite={business} // note: your form uses 'business'
+        businessWebsite={business}  
         message={message}
       />
     );

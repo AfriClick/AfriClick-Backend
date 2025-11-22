@@ -10,11 +10,11 @@ import {
 } from "@react-email/components";
 
 const Welcomeemail = ({
-  name = "John Doe",
-  email = "johndoe@example.com",
-  phone = "+1 (555) 123-4567",
+  name = " ",
+  email = " ",
+  phone = " ",
   businessWebsite = "https://example.com",
-  message = "Hello, I’d love to work with you on a new project!",
+  message = "",
 }) => {
   return React.createElement(
     Html,
@@ -30,7 +30,7 @@ const Welcomeemail = ({
           Container,
           { className: "max-w-lg mx-auto my-8 bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200" },
           
-          // Header
+   
           React.createElement(
             Section,
             { className: "bg-indigo-600 py-5 text-center" },
@@ -38,7 +38,6 @@ const Welcomeemail = ({
             React.createElement(Text, { className: "text-indigo-200 text-sm mt-1" }, "A visitor just contacted you from your website")
           ),
 
-          // Intro
           React.createElement(
             Section,
             { className: "px-6 py-6" },
@@ -46,8 +45,6 @@ const Welcomeemail = ({
               "You have received a new message. Below are the details provided by the sender:"
             )
           ),
-
-          // User Details
           React.createElement(
             Section,
             { className: "px-6 pb-4" },
@@ -66,8 +63,6 @@ const Welcomeemail = ({
               React.createElement("strong", null, "Business Website:"), " ",
               React.createElement("a", { href: businessWebsite, className: "text-indigo-600 underline" }, businessWebsite)
             ),
-
-            // Message Box
             React.createElement(
               Section,
               { className: "bg-gray-50 p-4 rounded border border-gray-200" },
@@ -78,10 +73,8 @@ const Welcomeemail = ({
             )
           ),
 
-          // Divider
           React.createElement(Section, { className: "border-t border-gray-200 my-6 mx-6" }),
 
-          // Footer
           React.createElement(
             Section,
             { className: "px-6 pb-6 text-center" },

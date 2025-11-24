@@ -38,7 +38,7 @@ app.post("/contact", contactLimiter, async (req, res) => {
   try {
     // Email to website owner
     await resend.emails.send({
-      from:"contact@estoikda.resend.app",
+      from:"onboarding@resend.dev",
       to: "landingpagept123@gmail.com",
       subject: `New Contact Form Message from ${name}`,
       react: Welcomeemail({
@@ -53,7 +53,7 @@ app.post("/contact", contactLimiter, async (req, res) => {
     // Auto Reply
 
     await resend.emails.send({
-      from:  "contact@estoikda.resend.app",
+      from:  "onboarding@resend.dev",
       to: email,
       subject: "We've received your message!",
       react: AutoReply({ name }),  
